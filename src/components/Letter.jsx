@@ -7,12 +7,12 @@ export default function Letter({ data, idx }) {
     return (
       <div className="flex flex-col items-center">
         <div
-          className={`bg-slate-600 w-20 h-48 rounded-lg items-center flex justify-center  ${animate}`}
+          className={`bg-slate-600 lg:w-20 lg:h-32 md:w-12 md:h-20 rounded-lg items-center flex justify-center  ${animate}`}
         >
           <span
-            className={`font-bold ${
+            className={`font-bold font-serif ${
               isFound ? "text-green-400" : "text-white"
-            } uppercase text-4xl`}
+            } uppercase text-[4rem]`}
           >
             {isFound ? data.letter : "?"}
           </span>
