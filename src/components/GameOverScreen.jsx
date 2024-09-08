@@ -7,8 +7,16 @@ export default function GameOver({
   result,
 }) {
   const [showContent, setShowContent] = useState(false);
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      setRestartGame(true);
+    }
+  }
+
   useEffect(() => {
     if (visible) {
+      document.addEventListener("keydown", handleKeyDown);
       const timer = setTimeout(() => {
         setShowContent(true);
       }, 750);
@@ -16,6 +24,7 @@ export default function GameOver({
       return () => clearTimeout(timer);
     } else {
       setShowContent(false); // Hide content when visible is false
+      document.removeEventListener("keydown", handleKeyDown)
     }
   }, [visible]);
 
@@ -41,7 +50,7 @@ export default function GameOver({
 
         <button
           onClick={() => setRestartGame(true)}
-          className="bg-slate-500 p-0 rounded-md text-xl w-32 mt-12 h-14 font-serif text-white font-bold hover:bg-slate-800"
+          className="bg-slate-700 p-0 rounded-md text-xl w-32 mt-12 h-14 font-serif text-white font-bold hover:bg-slate-500 animate-bounce"
         >
           RESTART
         </button>

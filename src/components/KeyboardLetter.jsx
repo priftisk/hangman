@@ -1,16 +1,15 @@
 import PropType from "prop-types";
 export default function KeyboardLetter({ letter, disabled, selected }) {
   const bgColor = selected ? "bg-green-400" : "bg-slate-700";
-  const borderColor = disabled ? "border-red-400" : "border-black";
   if (letter) {
     return (
       <div
         id={`letter-${letter}`}
-        className={`${bgColor} w-14 h-14 border-2 ${borderColor} flex items-center justify-center ${
+        className={`${bgColor} w-14 h-14 bg-slate-700 flex items-center justify-center border-r-2 ${
           disabled ? "hidden" : "visible"
         }`}
       >
-        <span className="font-bold text-lg text-white font-serif">
+        <span className="font-bold text-2xl text-white font-serif">
           {letter}
         </span>
       </div>

@@ -7,7 +7,7 @@ export default function Letter({ data, idx }) {
     return (
       <div className="flex flex-col items-center">
         <div
-          className={`bg-slate-600 lg:w-20 lg:h-32 md:w-12 md:h-20 rounded-lg items-center flex justify-center  ${animate}`}
+          className={`bg-slate-600 lg:w-20 lg:h-32 md:w-12 md:h-20 rounded-lg items-center flex justify-center ${animate}`}
         >
           <span
             className={`font-bold font-serif ${

@@ -5,6 +5,7 @@ import { getRandomWord, MAX_ATTEMPTS } from "../helper/utils";
 import GameOver from "../components/GameOverScreen";
 import GuessesMade from "../components/GuessesMade";
 import GuessesRemaining from "../components/GuessesRemaning";
+import HangmanFigure from "../components/HangmanFigure";
 export default function HangmanPage() {
   const [wordToGuess, setWordToGuess] = useState("");
   const [wordState, setWordState] = useState([]);
@@ -104,14 +105,19 @@ export default function HangmanPage() {
         playerWon={playerWon}
         result={wordToGuess}
       />
-      <h1 className="font-bold text-red-400 lg:text-[8rem] md:text-[4rem]">
-        HANGMAN
-      </h1>
+      <div className="flex flex-row items-center">
+        <h1 className="font-bold text-red-400 lg:text-[8rem] md:text-[4rem]">
+          HANGMAN
+        </h1>
+        <HangmanFigure attemptsRemaining={attemptsRemaining} />
+      </div>
+
       <div className="flex flex-row items-center justify-center gap-2">
         {wordState.map((item, idx) => {
           return <Letter key={idx} data={item} idx={idx} />;
         })}
       </div>
+
       <div>
         <LetterKeyboard
           setUserGuess={setUserGuess}
