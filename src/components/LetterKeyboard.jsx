@@ -14,11 +14,10 @@ export default function LetterKeyboard({
   const handleKeyDown = (e) => {
     if (/^[a-zA-Z]$/.test(e.key)) {
       setLettersGuessed((prevLetters) => {
-        // Check if the key is already in prevLetters
         if (!prevLetters.includes(e.key)) {
-          return [...prevLetters, e.key]; // Add the new key if it doesn't exist
+          return [...prevLetters, e.key];
         }
-        return prevLetters; // Otherwise, return the previous array unchanged
+        return prevLetters;
       });
 
       setUserGuess(e.key);

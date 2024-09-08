@@ -3,6 +3,8 @@ import Letter from "../components/Letter";
 import LetterKeyboard from "../components/LetterKeyboard";
 import { getRandomWord, MAX_ATTEMPTS } from "../helper/utils";
 import GameOver from "../components/GameOverScreen";
+import GuessesMade from "../components/GuessesMade";
+import GuessesRemaining from "../components/GuessesRemaning";
 export default function HangmanPage() {
   const [wordToGuess, setWordToGuess] = useState("");
   const [wordState, setWordState] = useState([]);
@@ -100,6 +102,7 @@ export default function HangmanPage() {
         visible={gameOver === true}
         setRestartGame={setRestartGame}
         playerWon={playerWon}
+        result={wordToGuess}
       />
       <h1 className="font-bold text-red-400 lg:text-[8rem] md:text-[4rem]">
         HANGMAN
@@ -116,9 +119,8 @@ export default function HangmanPage() {
           setLettersGuessed={setLettersGuessed}
         />
       </div>
-      <div className="text-4xl text-white">
-        Guesses Remaining: {attemptsRemaining}
-      </div>
+      <GuessesRemaining attemptsRemaining={attemptsRemaining} />
+      <GuessesMade lettersGuessed={lettersGuessed} wordToGuess={wordToGuess} />
     </div>
   );
 }

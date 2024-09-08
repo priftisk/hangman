@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-export default function GameOver({ visible, setRestartGame, playerWon }) {
+export default function GameOver({
+  visible,
+  setRestartGame,
+  playerWon,
+  result,
+}) {
   const [showContent, setShowContent] = useState(false);
   useEffect(() => {
     if (visible) {
@@ -17,14 +22,19 @@ export default function GameOver({ visible, setRestartGame, playerWon }) {
   if (showContent) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center flex-col z-50">
-        <h1 className="text-white text-6xl font-serif font-bold">GAME OVER</h1>
+        <h1 className="text-white text-[6rem] font-serif font-bold">GAME OVER</h1>
         <h1
           className={`${
             playerWon === true ? "text-green-400" : "text-red-400"
-          } text-2xl font-bold`}
+          } text-[4rem] font-bold`}
         >
           {playerWon !== null && (playerWon === true ? "You won" : "You lost")}
         </h1>
+        <div className="flex flex-row items-center gap-2">
+          <span className="text-white text-xl">Word was</span>
+            <h2 className="text-white text-2xl underline p-2 font-serif">{result}</h2>
+        </div>
+      
         <button
           onClick={() => setRestartGame(true)}
           className="bg-slate-500 p-0 rounded-md text-xl w-32 mt-12 h-14 font-serif text-white font-bold hover:bg-slate-800"
