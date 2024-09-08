@@ -13,12 +13,19 @@ export default function LetterKeyboard({
   const [selectedKey, setSelectedKey] = useState("");
   const handleKeyDown = (e) => {
     if (/^[a-zA-Z]$/.test(e.key)) {
-      setLettersGuessed((prevLetters) => [...prevLetters, e.key]);
+      setLettersGuessed((prevLetters) => {
+        // Check if the key is already in prevLetters
+        if (!prevLetters.includes(e.key)) {
+          return [...prevLetters, e.key]; // Add the new key if it doesn't exist
+        }
+        return prevLetters; // Otherwise, return the previous array unchanged
+      });
+
       setUserGuess(e.key);
-      setSelectedKey(e.key)
+      setSelectedKey(e.key);
     }
   };
-  
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
 

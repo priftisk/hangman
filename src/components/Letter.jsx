@@ -11,7 +11,7 @@ export default function Letter({ data, idx }) {
         >
           <span
             className={`font-bold font-serif ${
-              isFound ? "text-green-400" : "text-white"
+              isFound ? "text-pretty text-green-400" : "text-white"
             } uppercase text-[4rem]`}
           >
             {isFound ? data.letter : "?"}
