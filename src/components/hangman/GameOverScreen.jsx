@@ -21,7 +21,7 @@ export default function GameOver({
         setShowContent(true);
       }, 750);
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer); 
     } else {
       setShowContent(false); // Hide content when visible is false
       document.removeEventListener("keydown", handleKeyDown)

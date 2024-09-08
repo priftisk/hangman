@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Letter from "../components/Letter";
-import LetterKeyboard from "../components/LetterKeyboard";
+import Letter from "../components/hangman/Letter";
+import LetterKeyboard from "../components/hangman/LetterKeyboard";
 import { getRandomWord, MAX_ATTEMPTS } from "../helper/utils";
-import GameOver from "../components/GameOverScreen";
-import GuessesMade from "../components/GuessesMade";
-import GuessesRemaining from "../components/GuessesRemaning";
-import HangmanFigure from "../components/HangmanFigure";
+import GameOver from "../components/hangman/GameOverScreen";
+import GuessesMade from "../components/hangman/GuessesMade";
+import GuessesRemaining from "../components/hangman/GuessesRemaning";
+import HangmanFigure from "../components/hangman/HangmanFigure";
 export default function HangmanPage() {
   const [wordToGuess, setWordToGuess] = useState("");
   const [wordState, setWordState] = useState([]);

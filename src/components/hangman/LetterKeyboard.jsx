@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useMemo, useEffect, useState } from "react";
-import { keyboardArray } from "../helper/utils";
+import { keyboardArray } from "../../helper/utils";
 import KeyboardLetter from "./KeyboardLetter";
 export default function LetterKeyboard({
   setUserGuess,
@@ -91,3 +91,9 @@ export default function LetterKeyboard({
     </div>
   );
 }
+
+LetterKeyboard.propTypes = {
+  setUserGuess: PropTypes.func,
+  lettersGuessed: PropTypes.array,
+  setLettersGuessed: PropTypes.func,
+};
