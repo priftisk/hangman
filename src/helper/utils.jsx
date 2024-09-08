@@ -1,4 +1,4 @@
-export const MAX_ATTEMPTS = 5;
+export const MAX_ATTEMPTS = 6;
 export const keyboardArray = [
   "Q",
   "W",
@@ -1175,18 +1175,16 @@ export const WORDS = [
   "paragraph",
   "parallel",
   "parent",
-  "park",
-  "part",
+
   "particles",
   "particular",
   "particularly",
   "partly",
   "parts",
   "party",
-  "pass",
+
   "passage",
-  "past",
-  "path",
+
   "pattern",
 
   "peace",
@@ -1204,21 +1202,17 @@ export const WORDS = [
   "phrase",
   "physical",
   "piano",
-  "pick",
   "picture",
   "pictured",
 
   "piece",
 
-  "pile",
   "pilot",
-  "pine",
-  "pink",
-  "pipe",
+
   "pitch",
   "place",
   "plain",
-  "plan",
+
   "plane",
   "planet",
   "planned",
@@ -1227,39 +1221,34 @@ export const WORDS = [
   "plastic",
   "plate",
   "plates",
-  "play",
+
   "pleasant",
   "please",
   "pleasure",
   "plenty",
   "plural",
-  "plus",
+
   "pocket",
-  "poem",
-  "poet",
+
   "poetry",
   "point",
-  "pole",
+
   "police",
   "policeman",
   "political",
-  "pond",
-  "pony",
-  "pool",
-  "poor",
+
   "popular",
   "population",
   "porch",
-  "port",
+
   "position",
   "positive",
   "possible",
   "possibly",
-  "post",
 
   "potatoes",
   "pound",
-  "pour",
+
   "powder",
   "power",
   "powerful",
@@ -1298,12 +1287,11 @@ export const WORDS = [
   "prove",
   "provide",
   "public",
-  "pull",
+
   "pupil",
-  "pure",
+
   "purple",
   "purpose",
-  "push",
 
   "putting",
   "quarter",
@@ -1315,26 +1303,25 @@ export const WORDS = [
   "quietly",
   "quite",
   "rabbit",
-  "race",
+
   "radio",
   "railroad",
-  "rain",
+
   "raise",
-  "ran",
+
   "ranch",
   "range",
   "rapidly",
-  "rate",
+
   "rather",
 
-  "rays",
   "reach",
-  "read",
+
   "reader",
   "ready",
-  "real",
+
   "realize",
-  "rear",
+
   "reason",
   "recall",
   "receive",
@@ -1362,62 +1349,41 @@ export const WORDS = [
   "require",
   "research",
   "respect",
-  "rest",
+
   "result",
   "return",
   "review",
   "rhyme",
   "rhythm",
-  "rice",
-  "rich",
-  "ride",
+
   "riding",
   "right",
-  "ring",
-  "rise",
+
   "rising",
-  "river",
-  "road",
-  "roar",
-  "rock",
+
   "rocket",
   "rocky",
 
-  "roll",
-  "roof",
-  "room",
-  "root",
-  "rope",
-  "rose",
   "rough",
   "round",
   "route",
 
   "rubbed",
   "rubber",
-  "rule",
+
   "ruler",
 
-  "running",
-  "rush",
-
   "saddle",
-  "safe",
+
   "safety",
-  "said",
-  "sail",
-  "sale",
+
   "salmon",
-  "salt",
-  "same",
-  "sand",
-  "sang",
+
   "satellites",
   "satisfied",
-  "save",
+
   "saved",
-  "saw",
-  "say",
+
   "scale",
   "scared",
   "scene",
@@ -1429,28 +1395,26 @@ export const WORDS = [
   "screen",
   "search",
   "season",
-  "seat",
+
   "second",
   "secret",
   "section",
-  "seed",
+
   "seeing",
   "seems",
-  "seen",
+
   "seldom",
   "select",
   "selection",
-  "sell",
-  "send",
+
   "sense",
-  "sent",
+
   "sentence",
   "separate",
   "series",
   "serious",
   "serve",
   "service",
-  "sets",
   "setting",
   "settle",
   "settlers",
@@ -1472,29 +1436,26 @@ export const WORDS = [
   "shelter",
   "shine",
   "shinning",
-  "ship",
+
   "shirt",
-  "shoe",
-  "shoot",
-  "shop",
+
   "shore",
   "short",
   "shorter",
-  "shot",
+
   "should",
   "shoulder",
   "shout",
-  "show",
+
   "shown",
-  "shut",
-  "sick",
+
   "sides",
   "sight",
-  "sign",
+
   "signal",
   "silence",
   "silent",
-  "silk",
+
   "silly",
   "silver",
   "similar",
@@ -1502,17 +1463,15 @@ export const WORDS = [
   "simplest",
   "simply",
   "since",
-  "sing",
+
   "single",
-  "sink",
+
   "sister",
 
   "sitting",
   "situation",
 
-  "size",
   "skill",
-  "skin",
 
   "slabs",
   "slave",
@@ -1521,10 +1480,10 @@ export const WORDS = [
   "slide",
   "slight",
   "slightly",
-  "slip",
+
   "slipped",
   "slope",
-  "slow",
+
   "slowly",
   "small",
   "smaller",
@@ -1534,21 +1493,19 @@ export const WORDS = [
   "smoke",
   "smooth",
   "snake",
-  "snow",
-  "so",
-  "soap",
+
   "social",
   "society",
-  "soft",
+
   "softly",
-  "soil",
+
   "solar",
-  "sold",
+
   "soldier",
   "solid",
   "solution",
   "solve",
-  "some",
+
   "somebody",
   "somehow",
   "someone",
@@ -1556,9 +1513,6 @@ export const WORDS = [
   "sometime",
   "somewhere",
 
-  "song",
-  "soon",
-  "sort",
   "sound",
   "source",
   "south",
@@ -1574,7 +1528,7 @@ export const WORDS = [
   "spend",
   "spent",
   "spider",
-  "spin",
+
   "spirit",
   "spite",
   "split",
@@ -1587,19 +1541,19 @@ export const WORDS = [
   "stairs",
   "stand",
   "standard",
-  "star",
+
   "stared",
   "start",
   "state",
   "statement",
   "station",
-  "stay",
+
   "steady",
   "steam",
   "steel",
   "steep",
   "stems",
-  "step",
+
   "stepped",
   "stick",
   "stiff",
@@ -1638,12 +1592,11 @@ export const WORDS = [
   "substance",
   "success",
   "successful",
-  "such",
+
   "sudden",
   "suddenly",
   "sugar",
   "suggest",
-  "suit",
 
   "summer",
 
@@ -1652,14 +1605,14 @@ export const WORDS = [
   "supply",
   "support",
   "suppose",
-  "sure",
+
   "surface",
   "surprise",
   "surrounded",
-  "swam",
+
   "sweet",
   "swept",
-  "swim",
+
   "swimming",
   "swing",
   "swung",
@@ -1667,53 +1620,41 @@ export const WORDS = [
   "symbol",
   "system",
   "table",
-  "tail",
-  "take",
+
   "taken",
   "tales",
-  "talk",
-  "tall",
-  "tank",
-  "tape",
-  "task",
   "taste",
   "taught",
 
   "teach",
   "teacher",
-  "team",
+
   "tears",
   "teeth",
   "telephone",
   "television",
-  "tell",
+
   "temperature",
 
-  "tent",
-  "term",
   "terrible",
-  "test",
-  "than",
+
   "thank",
-  "that",
-  "thee",
-  "them",
+
   "themselves",
-  "then",
+
   "theory",
   "there",
   "therefore",
   "these",
-  "they",
+
   "thick",
-  "thin",
+
   "thing",
   "think",
   "third",
-  "thirty",
-  "this",
+
   "those",
-  "thou",
+
   "though",
   "thought",
   "thousand",
@@ -1726,15 +1667,9 @@ export const WORDS = [
   "throw",
   "thrown",
   "thumb",
-  "thus",
-  "tide",
 
   "tight",
   "tightly",
-  "till",
-  "time",
-
-  "tiny",
 
   "tired",
   "title",
@@ -1748,16 +1683,13 @@ export const WORDS = [
   "tongue",
   "tonight",
 
-  "took",
-  "tool",
-  "top",
   "topic",
-  "torn",
+
   "total",
   "touch",
   "toward",
   "tower",
-  "town",
+
   "trace",
   "track",
   "trade",
@@ -1765,45 +1697,35 @@ export const WORDS = [
   "trail",
   "train",
   "transportation",
-  "trap",
+
   "travel",
   "treated",
-  "tree",
   "triangle",
   "tribe",
   "trick",
   "tried",
-  "trip",
+
   "troops",
   "tropical",
   "trouble",
-  "truck",
-  "trunk",
-  "truth",
 
-  "tube",
-  "tune",
-  "turn",
   "twelve",
   "twenty",
   "twice",
 
-  "type",
   "typical",
   "uncle",
   "under",
   "underline",
   "understanding",
   "unhappy",
-  "union",
-  "unit",
+
   "universe",
   "unknown",
   "unless",
   "until",
   "unusual",
 
-  "upon",
   "upper",
   "upward",
 
@@ -1817,56 +1739,43 @@ export const WORDS = [
   "vapor",
   "variety",
   "various",
-  "vast",
+
   "vegetable",
-  "verb",
+
   "vertical",
-  "very",
+
   "vessels",
   "victory",
-  "view",
+
   "village",
   "visit",
   "visitor",
   "voice",
   "volume",
-  "vote",
+
   "vowel",
   "voyage",
   "wagon",
-  "wait",
-  "walk",
-  "wall",
-  "want",
 
-  "warm",
-  "warn",
-
-  "wash",
   "waste",
   "watch",
   "water",
-  "wave",
-  "weak",
+
   "wealth",
-  "wear",
   "weather",
-  "week",
+
   "weigh",
   "weight",
   "welcome",
-  "well",
-  "went",
-  "were",
-  "west",
+
   "western",
 
   "whale",
-  "what",
+
   "whatever",
   "wheat",
   "wheel",
-  "when",
+
   "whenever",
   "where",
   "wherever",
@@ -1878,37 +1787,19 @@ export const WORDS = [
   "white",
 
   "whole",
-  "whom",
   "whose",
 
-  "wide",
   "widely",
-  "wife",
-  "wild",
-  "will",
   "willing",
-  "win",
-  "wind",
-  "window",
-  "wing",
   "winter",
-  "wire",
-  "wise",
-  "wish",
-  "with",
+
   "within",
   "without",
-  "wolf",
   "women",
-  "won",
   "wonder",
   "wonderful",
-  "wood",
+
   "wooden",
-  "wool",
-  "word",
-  "wore",
-  "work",
   "worker",
   "world",
   "worried",
@@ -1923,22 +1814,14 @@ export const WORDS = [
   "written",
   "wrong",
   "wrote",
-  "yard",
-  "year",
   "yellow",
-
   "yesterday",
-
   "young",
   "younger",
-  "your",
   "yourself",
   "youth",
-  "zero",
   "zebra",
   "zipper",
-
-  "zulu",
 ];
 
 export function getRandomWord() {

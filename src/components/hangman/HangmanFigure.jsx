@@ -1,5 +1,5 @@
 export default function HangmanFigure({ attemptsRemaining }) {
-    const scaleFactor = 0.5;
+    const scaleFactor = 0.6;
   const gallowsColor = '#805730'
   const  bodyColor = '#d99e1e'
     return (

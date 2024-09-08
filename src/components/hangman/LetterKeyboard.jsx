@@ -10,7 +10,7 @@ export default function LetterKeyboard({
   const keyboardRow1 = useMemo(() => keyboardArray.slice(0, 10), []);
   const keyboardRow2 = useMemo(() => keyboardArray.slice(10, 19), []);
   const keyboardRow3 = useMemo(() => keyboardArray.slice(19, 28), []);
-  const [selectedKey, setSelectedKey] = useState("");
+  // const [selectedKey, setSelectedKey] = useState("");
 
   const handleKeyDown = (e) => {
     if (/^[a-zA-Z]$/.test(e.key)) {
@@ -22,7 +22,7 @@ export default function LetterKeyboard({
       });
 
       setUserGuess(e.key);
-      setSelectedKey(e.key);
+      // setSelectedKey(e.key);
     }
   };
 
@@ -31,7 +31,7 @@ export default function LetterKeyboard({
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      setSelectedKey("");
+      // setSelectedKey("");
     };
   }, []);
 

@@ -1,6 +1,7 @@
 import PropType from "prop-types";
 export default function KeyboardLetter({ letter, disabled, selected }) {
   const bgColor = selected ? "bg-green-400" : "bg-slate-700";
+  
   if (letter) {
     return (
       <div

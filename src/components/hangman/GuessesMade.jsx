@@ -3,8 +3,8 @@ export default function GuessesMade({ lettersGuessed, wordToGuess }) {
   const lettersInWord =
     wordToGuess && wordToGuess.length > 0 && wordToGuess.split("");
   return (
-    <div className={`flex flex-row items-center gap-2 ${lettersGuessed.legth > 0 ? 'block' : 'none'}`}>
-      <span className="text-2xl text-white">Guesses made:</span>
+    <div className={`flex flex-col items-center gap-2`}>
+      <span className="text-2xl text-white underline">Guesses made</span>
       <div className="flex flex-row items-center gap-1">
         {lettersGuessed.map((letter, idx) => {
           const isCorrect = lettersInWord.includes(letter.toLowerCase());
@@ -15,7 +15,7 @@ export default function GuessesMade({ lettersGuessed, wordToGuess }) {
                 isCorrect === true ? "text-green-400" : "text-red-500"
               }`}
             >
-              {letter},
+              {letter}<span className="text-white">,</span>
             </span>
           );
         })}

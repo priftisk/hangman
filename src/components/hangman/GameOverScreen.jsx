@@ -9,7 +9,7 @@ export default function GameOver({
   const [showContent, setShowContent] = useState(false);
 
   function handleKeyDown(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.keyCode === 32) {
       setRestartGame(true);
     }
   }
