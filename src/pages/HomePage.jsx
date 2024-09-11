@@ -1,12 +1,12 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import HangmanLogo from "../components/hangman/HangmanLogo";
-import CanvasLogo from "../components/canvas/CanvasLogo";
+import HowHighLogo from "../components/howHigh/HowHighLogo";
 
 export default function HomePage() {
   const location = useLocation();
   const locationisHome = location.pathname === "/";
   // const locationIsHangman = location.pathname === "/hangman";
-  // const locationIsCanvas = location.pathname === "/canvas";
+  // const locationIsCanvas = location.pathname === "/how-high";
 
   return (
     <>
@@ -19,8 +19,8 @@ export default function HomePage() {
       )}
       {locationisHome && (
         <div className="animate-zoomin">
-          <Link to={"canvas"}>
-            <CanvasLogo />
+          <Link to={"how-high"}>
+            <HowHighLogo />
           </Link>
         </div>
       )}

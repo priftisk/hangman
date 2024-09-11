@@ -1,11 +1,11 @@
-export default function CanvasFigure() {
+export default function HowHighFigure() {
   return (
-    <svg width="120" height="80" xmlns="http://www.w3.org/2000/svg">
+    <svg width="160" height="110" xmlns="http://www.w3.org/2000/svg">
       <rect
         x="10"
         y="10"
-        width="90"
-        height="60"
+        width="140"
+        height="90"
         fill="none"
         stroke="#000"
         strokeWidth="2"
@@ -13,7 +13,7 @@ export default function CanvasFigure() {
       />
 
       <polyline
-        points="20,60 40,20 60,60 70,20 80,50 90,40"
+      points="30,70 50,60 70,30 90,55 110,25 130,35"
         fill="none"
         stroke="#66ba56"
         strokeWidth="3"
