@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import { keyboardArray } from "../../helper/utils";
 import KeyboardLetter from "./KeyboardLetter";
 export default function LetterKeyboard({
@@ -12,19 +12,22 @@ export default function LetterKeyboard({
   const keyboardRow3 = useMemo(() => keyboardArray.slice(19, 28), []);
   // const [selectedKey, setSelectedKey] = useState("");
 
-  const handleKeyDown = (e) => {
-    if (/^[a-zA-Z]$/.test(e.key)) {
-      setLettersGuessed((prevLetters) => {
-        if (!prevLetters.includes(e.key)) {
-          return [...prevLetters, e.key];
-        }
-        return prevLetters;
-      });
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (/^[a-zA-Z]$/.test(e.key)) {
+        setLettersGuessed((prevLetters) => {
+          if (!prevLetters.includes(e.key)) {
+            return [...prevLetters, e.key];
+          }
+          return prevLetters;
+        });
 
-      setUserGuess(e.key);
-      // setSelectedKey(e.key);
-    }
-  };
+        setUserGuess(e.key);
+        // setSelectedKey(e.key);
+      }
+    },
+    [setLettersGuessed, setUserGuess]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -33,7 +36,7 @@ export default function LetterKeyboard({
       document.removeEventListener("keydown", handleKeyDown);
       // setSelectedKey("");
     };
-  }, []);
+  }, [handleKeyDown]);
 
   return (
     <div
