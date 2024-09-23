@@ -2,7 +2,12 @@ import WordleRowItem from "./WordleRowItem";
 import PropTypes from "prop-types";
 import { useMemo, useState, useEffect } from "react";
 import { initializeRowGuess } from "../../helper/wordle";
-export default function WordleGridRow({ wordToGuess, currentRow, rowIdx }) {
+export default function WordleGridRow({
+  wordToGuess,
+  currentRow,
+  rowIdx,
+  setRowGuesses,
+}) {
   const [rowGuess, setRowGuess] = useState({});
 
   useEffect(() => {
@@ -37,4 +42,5 @@ WordleGridRow.propTypes = {
   wordToGuess: PropTypes.string,
   currentRow: PropTypes.number,
   rowIdx: PropTypes.number,
+  setRowGuesses: PropTypes.func,
 };

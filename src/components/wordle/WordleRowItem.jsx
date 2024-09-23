@@ -6,8 +6,6 @@ export default function WordleGridItem({
   row,
   rowGuess,
 }) {
-
-  
   const handleChange = (e) => {
     if (e.target.value.length <= 1) {
       setRowGuess((prev) => ({
@@ -29,7 +27,8 @@ export default function WordleGridItem({
   return (
     <div className="w-20 h-20 bg-slate-700 rounded-lg">
       <span className="text-white font-serif h-full flex items-center justify-center text-2xl uppercase">
-        {/* {content} */}
+        {/* {content ?? ''} */}
+        {null}
       </span>
     </div>
   );
@@ -40,5 +39,5 @@ WordleGridItem.propTypes = {
   isCurrentRow: PropTypes.bool,
   setRowGuess: PropTypes.func,
   row: PropTypes.number,
-  rowGuess: PropTypes.string,
+  rowGuess: PropTypes.object,
 };
