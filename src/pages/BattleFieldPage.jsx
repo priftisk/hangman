@@ -3,34 +3,40 @@ import TableCell from "../components/battlefield/TableCell";
 import {
   battlefieldInit,
   hasBeenVisited,
+  hasNoValidMoves,
   isAdjacentCell,
   isEmptyCell,
   isFinishCell,
+  gridInit,
 } from "../helper/battlefield";
+import GameOverScreen from "../components/battlefield/GameOverScreen";
 export default function BattleFieldPage() {
-  const rows = 8;
-  const cols = 8;
+  const [currentPos, setCurrentPos] = useState({ row: "", col: "" });
+  const [gameOver, setGameOver] = useState(false);
+  const [gameOverReason, setGameOverReason] = useState("");
+  const [cells, setCells] = useState(gridInit());
+  useEffect(() => {
+    battlefieldInit(setCells);
+  }, [setCells]);
 
-  const [cells, setCells] = useState(
-    Array.from({ length: rows }, () =>
-      Array.from({ length: cols }, () => ({
-        empty: true,
-        hasPlayer: false,
-        isStartingCell: false,
-        isFinishCell: false,
-        hasBomb: false,
-        hasBeenVisited: false,
-      }))
-    )
-  );
+  const handleRestart = () => {
+    setCells(gridInit())
+    setCurrentPos({ row: "", col: "" });
+    battlefieldInit(setCells);
+    setGameOver(false);
+    setGameOverReason("");
+  };
 
   useEffect(() => {
-    battlefieldInit(setCells, rows, cols);
-  }, [rows, cols, setCells]);
+    if (currentPos.col === "" && currentPos.row === "") return;
+    if (hasNoValidMoves(cells, currentPos.row, currentPos.col)) {
+      setGameOverReason("No valid moves");
+      setGameOver(true);
+    }
+  }, [currentPos, cells]);
 
   const handleDrop = (sourceRow, sourceCol, targetRow, targetCol) => {
     let targetCell = cells[targetRow][targetCol];
-    // let sourceCell = cells[sourceRow][sourceCol];
     if (
       !isAdjacentCell({
         sourceRow: sourceRow,
@@ -43,12 +49,13 @@ export default function BattleFieldPage() {
       return;
     }
     if (hasBeenVisited({ cell: targetCell })) {
-      // If it's the finish cell, return
+      // If cell has been visited, return
       console.log("Invalid move: Cell already been visited");
       return;
     }
 
     if (isFinishCell({ cell: targetCell })) {
+      // If it's the finish cell, return
       console.log("You Won");
       return;
     }
@@ -73,11 +80,17 @@ export default function BattleFieldPage() {
         })
       );
       setCells(newCells);
+      setCurrentPos({ row: targetRow, col: targetCol });
     }
   };
 
   return (
     <div className="overflow-x-auto">
+      <GameOverScreen
+        gameOver={gameOver}
+        gameOverText={gameOverReason}
+        handleRestart={handleRestart}
+      />
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <tbody>
           {cells.map((row, rowIdx) => (
