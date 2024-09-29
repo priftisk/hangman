@@ -23,7 +23,7 @@ export default function BattleFieldPage() {
   const [showBombs, setShowBombs] = useState(false);
   const { error, setError } = useError();
   const [youWon, setYouWon] = useState(false);
-  const [timeState, setTimeState] = useState(5);
+  // const [timeState, setTimeState] = useState(5);
   const movesMade = useMemo(() => {
     return cells.reduce((acc, row) => {
       return (
