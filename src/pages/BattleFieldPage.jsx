@@ -8,6 +8,7 @@ import {
   isEmptyCell,
   isFinishCell,
   gridInit,
+  hasBomb,
 } from "../helper/battlefield";
 import GameOverScreen from "../components/battlefield/GameOverScreen";
 export default function BattleFieldPage() {
@@ -52,6 +53,13 @@ export default function BattleFieldPage() {
       // If cell has been visited, return
       console.log("Invalid move: Cell already been visited");
       return;
+    }
+
+    if(hasBomb({cell: targetCell})){
+      console.log("You hit a bomb")
+      setGameOver(true)
+      setGameOverReason("You hit a bomb")
+      return
     }
 
     if (isFinishCell({ cell: targetCell })) {

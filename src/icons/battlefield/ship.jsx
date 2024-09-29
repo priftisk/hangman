@@ -5,7 +5,7 @@ export default function ShipIcon() {
       height="64px"
       viewBox="0 0 20 20"
       version="1.1"
-      fill="#d49d63"
+      fill="#3b3d80"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
@@ -24,7 +24,7 @@ export default function ShipIcon() {
           <g
             id="Dribbble-Light-Preview"
             transform="translate(-340.000000, -5479.000000)"
-            fill="#d49d63"
+            fill="#bc95db"
           >
             <g id="icons" transform="translate(56.000000, 160.000000)">
               <path

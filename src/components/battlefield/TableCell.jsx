@@ -6,7 +6,7 @@ export default function TableCell({ colIdx, rowIdx, cellState, handleDrop }) {
   const hasBeenVisited = useMemo(() => cellState.hasBeenVisited, [cellState]);
   const isFinishCell = useMemo(() => cellState.isFinishCell, [cellState]);
   const hasPlayer = useMemo(() => cellState.hasPlayer, [cellState]);
-
+  const hasBomb = useMemo(() => cellState.hasBomb, [cellState]);
   const onDragStart = (e) => {
     // Store the source cell's coordinates
     e.dataTransfer.setData("sourceCell", JSON.stringify({ rowIdx, colIdx }));
@@ -37,6 +37,7 @@ export default function TableCell({ colIdx, rowIdx, cellState, handleDrop }) {
     >
       {hasPlayer && <ShipIcon />}
       {isFinishCell && <FinishIcon />}
+      {hasBomb && <span>BOMB</span>}
     </td>
   );
 }

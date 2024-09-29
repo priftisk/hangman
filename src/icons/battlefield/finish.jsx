@@ -1,7 +1,7 @@
 export default function FinishIcon() {
   return (
     <svg
-    fill="#fff"
+    fill="#4fab59"
     width="64px"
     height="64px"
     viewBox="0 0 24 24"
