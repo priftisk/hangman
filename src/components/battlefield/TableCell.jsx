@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import ShipIcon from "../../icons/battlefield/ship";
 import FinishIcon from "../../icons/battlefield/finish";
 import { useMemo } from "react";
-export default function TableCell({ colIdx, rowIdx, cellState, handleDrop }) {
+import BombIcon from "../../icons/battlefield/bomb";
+export default function TableCell({ colIdx, rowIdx, cellState, handleDrop, showBombs }) {
   const hasBeenVisited = useMemo(() => cellState.hasBeenVisited, [cellState]);
   const isFinishCell = useMemo(() => cellState.isFinishCell, [cellState]);
   const hasPlayer = useMemo(() => cellState.hasPlayer, [cellState]);
@@ -27,7 +28,7 @@ export default function TableCell({ colIdx, rowIdx, cellState, handleDrop }) {
   return (
     <td
       id={`${rowIdx}-${colIdx}`}
-      className={`px-4 py-2 border border-black cursor-move w-24 h-24 ${
+      className={`px-4 py-2 border border-black cursor-move w-16 h-16 ${
         hasBeenVisited ? "bg-gray-700" : "bg-slate-600"
       }`}
       draggable={hasPlayer} // Only allow dragging if the cell has a player
@@ -37,7 +38,7 @@ export default function TableCell({ colIdx, rowIdx, cellState, handleDrop }) {
     >
       {hasPlayer && <ShipIcon />}
       {isFinishCell && <FinishIcon />}
-      {hasBomb && <span>BOMB</span>}
+      {hasBomb && showBombs && <BombIcon />}
     </td>
   );
 }
@@ -47,4 +48,5 @@ TableCell.propTypes = {
   rowIdx: PropTypes.number,
   cellState: PropTypes.object,
   handleDrop: PropTypes.func,
+  showBombs: PropTypes.bool
 };

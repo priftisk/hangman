@@ -1,6 +1,8 @@
 export const ROWS = 8;
 export const COLS = 8;
-export const MAX_BOMBS = 14
+export const MAX_BOMBS = 20
+
+
 export function battlefieldInit(setCells) {
   setCells((prevCells) => {
     const updatedCells = [...prevCells];

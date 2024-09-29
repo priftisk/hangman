@@ -11,28 +11,39 @@ import {
   hasBomb,
 } from "../helper/battlefield";
 import GameOverScreen from "../components/battlefield/GameOverScreen";
+import useError from "../hooks/useError";
 export default function BattleFieldPage() {
   const [currentPos, setCurrentPos] = useState({ row: "", col: "" });
   const [gameOver, setGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState("");
   const [cells, setCells] = useState(gridInit());
+  const [showBombs, setShowBombs] = useState(false);
+  const {error, setError} = useError();
+  const displayBombsTemporarily = () => {
+    setShowBombs(true);
+    setTimeout(() => setShowBombs(false), 5000);
+  };
   useEffect(() => {
     battlefieldInit(setCells);
+    displayBombsTemporarily();
   }, [setCells]);
 
   const handleRestart = () => {
-    setCells(gridInit())
+    setCells(gridInit());
     setCurrentPos({ row: "", col: "" });
     battlefieldInit(setCells);
+    displayBombsTemporarily();
     setGameOver(false);
     setGameOverReason("");
   };
 
   useEffect(() => {
+    //Checks if game is over when there are no more available moves
     if (currentPos.col === "" && currentPos.row === "") return;
     if (hasNoValidMoves(cells, currentPos.row, currentPos.col)) {
       setGameOverReason("No valid moves");
       setGameOver(true);
+      setShowBombs(true);
     }
   }, [currentPos, cells]);
 
@@ -46,20 +57,18 @@ export default function BattleFieldPage() {
         targetRow: targetRow,
       })
     ) {
-      console.log("Invalid move: Must be an adjacent cell");
-      return;
+      return setError("Invalid move: Must be an adjacent cell")
+       
     }
     if (hasBeenVisited({ cell: targetCell })) {
       // If cell has been visited, return
-      console.log("Invalid move: Cell already been visited");
-      return;
+      return setError("Invalid move: Cell already been visited");
     }
 
-    if(hasBomb({cell: targetCell})){
-      console.log("You hit a bomb")
-      setGameOver(true)
-      setGameOverReason("You hit a bomb")
-      return
+    if (hasBomb({ cell: targetCell })) {
+      setGameOver(true);
+      setGameOverReason("You hit a bomb");
+      return;
     }
 
     if (isFinishCell({ cell: targetCell })) {
@@ -73,15 +82,14 @@ export default function BattleFieldPage() {
       const newCells = cells.map((row, rowIdx) =>
         row.map((cell, colIdx) => {
           if (rowIdx === targetRow && colIdx === targetCol) {
-            // Mark the target cell with the player
             return {
               ...cell,
               empty: false,
               hasPlayer: true,
               hasBeenVisited: true,
             };
-          } else if (rowIdx === sourceRow && colIdx === sourceCol) {
-            // Remove the player from the source cell
+          }
+          if (rowIdx === sourceRow && colIdx === sourceCol) {
             return { ...cell, empty: true, hasPlayer: false };
           }
           return cell;
@@ -93,13 +101,13 @@ export default function BattleFieldPage() {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
       <GameOverScreen
         gameOver={gameOver}
         gameOverText={gameOverReason}
         handleRestart={handleRestart}
       />
-      <table className="min-w-full table-auto border-collapse border border-gray-300">
+      <table className="min-w-1/2 table-auto border-collapse border border-gray-300">
         <tbody>
           {cells.map((row, rowIdx) => (
             <tr key={rowIdx} className="odd:bg-gray-50 even:bg-white">
@@ -110,12 +118,14 @@ export default function BattleFieldPage() {
                   colIdx={colIdx}
                   cellState={cells[rowIdx][colIdx]}
                   handleDrop={handleDrop}
+                  showBombs={showBombs}
                 />
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+      {error.length > 0 &&<span className="font-bold text-red-600 text-2xl font-serif bg-slate-800 p-4 rounded-lg">{error}</span> }
     </div>
   );
 }

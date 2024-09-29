@@ -10,7 +10,7 @@ export default function HomePage() {
   // const locationIsCanvas = location.pathname === "/how-high";
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
       {locationisHome && (
         <>
           <div className="animate-slideinleft">
@@ -18,7 +18,7 @@ export default function HomePage() {
               <HangmanLogo />
             </Link>
           </div>
-        
+
           {/* <div className="animate-zoomin">
             <Link to={"how-high"}>
               <HowHighLogo />
@@ -35,6 +35,6 @@ export default function HomePage() {
       <div className={`${!locationisHome && "animate-fadeinup"}`}>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }

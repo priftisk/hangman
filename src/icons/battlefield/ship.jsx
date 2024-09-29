@@ -1,8 +1,8 @@
 export default function ShipIcon() {
   return (
     <svg
-      width="64px"
-      height="64px"
+      width="32px"
+      height="32px"
       viewBox="0 0 20 20"
       version="1.1"
       fill="#3b3d80"
