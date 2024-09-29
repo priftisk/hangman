@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TableCell from "../components/battlefield/TableCell";
 import {
   battlefieldInit,
@@ -12,6 +12,8 @@ import {
 } from "../helper/battlefield";
 import GameOverScreen from "../components/battlefield/GameOverScreen";
 import useError from "../hooks/useError";
+import MineFieldLogo from "../components/battlefield/MineFieldLogo";
+import YouWonScreen from "../components/battlefield/YouWonScreen";
 export default function BattleFieldPage() {
   const [currentPos, setCurrentPos] = useState({ row: "", col: "" });
   const [gameOver, setGameOver] = useState(false);
@@ -19,6 +21,13 @@ export default function BattleFieldPage() {
   const [cells, setCells] = useState(gridInit());
   const [showBombs, setShowBombs] = useState(false);
   const {error, setError} = useError();
+  const [youWon, setYouWon] = useState(false)
+  const movesMade = useMemo(() => {
+    return cells.reduce((acc, row) => {
+      return acc + row.reduce((rowAcc, cell) => cell.hasBeenVisited ? rowAcc + 1 : rowAcc, 0);
+    }, 0);
+  }, [cells]);
+  
   const displayBombsTemporarily = () => {
     setShowBombs(true);
     setTimeout(() => setShowBombs(false), 5000);
@@ -33,6 +42,7 @@ export default function BattleFieldPage() {
     setCurrentPos({ row: "", col: "" });
     battlefieldInit(setCells);
     displayBombsTemporarily();
+    setYouWon(false)
     setGameOver(false);
     setGameOverReason("");
   };
@@ -73,7 +83,7 @@ export default function BattleFieldPage() {
 
     if (isFinishCell({ cell: targetCell })) {
       // If it's the finish cell, return
-      console.log("You Won");
+      setYouWon(true)
       return;
     }
 
@@ -101,12 +111,14 @@ export default function BattleFieldPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
+    <div className="flex flex-col items-center justify-start min-h-screen overflow-x-auto">
       <GameOverScreen
         gameOver={gameOver}
         gameOverText={gameOverReason}
         handleRestart={handleRestart}
       />
+      <YouWonScreen youWon={youWon} handleRestart={handleRestart} movesMade={movesMade}/>
+      <MineFieldLogo />
       <table className="min-w-1/2 table-auto border-collapse border border-gray-300">
         <tbody>
           {cells.map((row, rowIdx) => (

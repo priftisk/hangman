@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route path="hangman" element={<HangmanPage />} />
-          <Route path="battlefield" element={<BattleFieldPage />} />
+          <Route path="minefield" element={<BattleFieldPage />} />
           {/* <Route path="how-high" element={<HowHighPage />} />
           <Route path="wordle" element={<WordlePage />} /> */}
         </Route>

@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import HangmanLogo from "../components/hangman/HangmanLogo";
+import MineFieldLogo from "../components/battlefield/MineFieldLogo";
 // import HowHighLogo from "../components/howHigh/HowHighLogo";
 // import WordleLogo from "../components/wordle/WordleLogo";
 
@@ -16,6 +17,11 @@ export default function HomePage() {
           <div className="animate-slideinleft">
             <Link to={"hangman"}>
               <HangmanLogo />
+            </Link>
+          </div>
+          <div className="animate-slideinright">
+            <Link to={"minefield"}>
+              <MineFieldLogo />
             </Link>
           </div>
 

@@ -1,8 +1,8 @@
 export default function BombIcon() {
   return (
     <svg
-   width="32px"
-   height="32px"
+   width="48px"
+   height="48px"
    viewBox="-4.8 -4.8 57.60 57.60"
    xmlns="http://www.w3.org/2000/svg"
    fill="#ed3232"

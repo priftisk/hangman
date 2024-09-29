@@ -1,9 +1,9 @@
 export default function FinishIcon() {
   return (
     <svg
-    fill="#4fab59"
-    width="32px"
-    height="32px"
+    fill="#5bd49f"
+    width="48px"
+    height="48px"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >

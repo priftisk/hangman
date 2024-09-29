@@ -9,7 +9,6 @@ import HangmanLogo from "../components/hangman/HangmanLogo";
 export default function HangmanPage() {
   const [wordToGuess, setWordToGuess] = useState("");
   const [wordState, setWordState] = useState([]);
-  const [userGuess, setUserGuess] = useState("");
   const [lettersGuessed, setLettersGuessed] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [restartGame, setRestartGame] = useState(false);
@@ -56,7 +55,7 @@ export default function HangmanPage() {
       setAttemptsRemaining((prev) => prev - 1);
     }
     setWordState(newWordState);
-    setUserGuess("");
+    // setUserGuess("");
   }
   function checkIfWon() {
     const totalLetters = wordState.length;
@@ -86,7 +85,7 @@ export default function HangmanPage() {
   useEffect(() => {
     if (restartGame === true) {
       setWordToGuess(getRandomWord());
-      setUserGuess("");
+      // setUserGuess("");
       setLettersGuessed([]);
       setGameOver(false);
       setRestartGame(false);
@@ -97,7 +96,7 @@ export default function HangmanPage() {
   return (
     <div
       id="container"
-      className="flex items-center flex-col lg:min-h-[40rem] md:min-h-[20rem] font-serif"
+      className="flex items-center justify-start flex-col lg:min-h-[40rem] md:min-h-[20rem] font-serif"
     >
       <GameOver
         visible={gameOver === true}
@@ -115,7 +114,7 @@ export default function HangmanPage() {
 
       <div>
         <LetterKeyboard
-          setUserGuess={setUserGuess}
+          setUserGuess={null}
           lettersGuessed={lettersGuessed}
           setLettersGuessed={setLettersGuessed}
         />
