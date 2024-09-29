@@ -15,22 +15,30 @@ import useError from "../hooks/useError";
 import MineFieldLogo from "../components/battlefield/MineFieldLogo";
 import YouWonScreen from "../components/battlefield/YouWonScreen";
 export default function BattleFieldPage() {
+  const timeBeforeStart = 5;
   const [currentPos, setCurrentPos] = useState({ row: "", col: "" });
   const [gameOver, setGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState("");
   const [cells, setCells] = useState(gridInit());
   const [showBombs, setShowBombs] = useState(false);
-  const {error, setError} = useError();
-  const [youWon, setYouWon] = useState(false)
+  const { error, setError } = useError();
+  const [youWon, setYouWon] = useState(false);
+  const [timeState, setTimeState] = useState(5);
   const movesMade = useMemo(() => {
     return cells.reduce((acc, row) => {
-      return acc + row.reduce((rowAcc, cell) => cell.hasBeenVisited ? rowAcc + 1 : rowAcc, 0);
+      return (
+        acc +
+        row.reduce(
+          (rowAcc, cell) => (cell.hasBeenVisited ? rowAcc + 1 : rowAcc),
+          0
+        )
+      );
     }, 0);
   }, [cells]);
-  
+
   const displayBombsTemporarily = () => {
     setShowBombs(true);
-    setTimeout(() => setShowBombs(false), 5000);
+    setTimeout(() => setShowBombs(false), timeBeforeStart * 1000); // 5 seconds
   };
   useEffect(() => {
     battlefieldInit(setCells);
@@ -42,7 +50,7 @@ export default function BattleFieldPage() {
     setCurrentPos({ row: "", col: "" });
     battlefieldInit(setCells);
     displayBombsTemporarily();
-    setYouWon(false)
+    setYouWon(false);
     setGameOver(false);
     setGameOverReason("");
   };
@@ -58,6 +66,7 @@ export default function BattleFieldPage() {
   }, [currentPos, cells]);
 
   const handleDrop = (sourceRow, sourceCol, targetRow, targetCol) => {
+    if (showBombs) return setError("Memorize the bomb positions");
     let targetCell = cells[targetRow][targetCol];
     if (
       !isAdjacentCell({
@@ -67,8 +76,7 @@ export default function BattleFieldPage() {
         targetRow: targetRow,
       })
     ) {
-      return setError("Invalid move: Must be an adjacent cell")
-       
+      return setError("Invalid move: Must be an adjacent cell");
     }
     if (hasBeenVisited({ cell: targetCell })) {
       // If cell has been visited, return
@@ -83,7 +91,7 @@ export default function BattleFieldPage() {
 
     if (isFinishCell({ cell: targetCell })) {
       // If it's the finish cell, return
-      setYouWon(true)
+      setYouWon(true);
       return;
     }
 
@@ -117,7 +125,11 @@ export default function BattleFieldPage() {
         gameOverText={gameOverReason}
         handleRestart={handleRestart}
       />
-      <YouWonScreen youWon={youWon} handleRestart={handleRestart} movesMade={movesMade}/>
+      <YouWonScreen
+        youWon={youWon}
+        handleRestart={handleRestart}
+        movesMade={movesMade}
+      />
       <MineFieldLogo />
       <table className="min-w-1/2 table-auto border-collapse border border-gray-300">
         <tbody>
@@ -137,7 +149,11 @@ export default function BattleFieldPage() {
           ))}
         </tbody>
       </table>
-      {error.length > 0 &&<span className="font-bold text-red-600 text-2xl font-serif bg-slate-800 p-4 rounded-lg">{error}</span> }
+      {error.length > 0 && (
+        <span className="font-bold text-red-600 text-2xl font-serif bg-slate-800 p-4 rounded-lg mt-2">
+          {error}
+        </span>
+      )}
     </div>
   );
 }

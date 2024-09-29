@@ -14,12 +14,13 @@ export default function HomePage() {
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
       {locationisHome && (
         <>
-          <div className="animate-slideinleft">
+          <div className="animate-slideinleft hover:scale-110 duration-500">
             <Link to={"hangman"}>
               <HangmanLogo />
             </Link>
           </div>
-          <div className="animate-slideinright">
+          <hr className="w-full"/>
+          <div className="animate-slideinright hover:scale-110 duration-500">
             <Link to={"minefield"}>
               <MineFieldLogo />
             </Link>
