@@ -85,6 +85,7 @@ export default function BattleFieldPage() {
 
     if (hasBomb({ cell: targetCell })) {
       setGameOver(true);
+      setShowBombs(true)
       setGameOverReason("You hit a bomb");
       return;
     }
