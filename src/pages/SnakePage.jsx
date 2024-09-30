@@ -1,15 +1,25 @@
 import { useEffect, useState } from "react";
-import Snake, { GridInit } from "../helper/snake";
+import {
+  addSegmentToSnake,
+  COLS,
+  GridInit,
+  moveSnake,
+  ROWS,
+  SNAKE_LENGTH,
+  updateTargetPos,
+} from "../helper/snake";
 import Cell from "../components/snake/Cell";
-
+import SnakeLogo from "../components/snake/SnakeLogo";
 export default function SnakePage() {
   const [cells, setCells] = useState(GridInit());
-  const snake = new Snake(3);
-  const [pos, setPos] = useState(
-    Array.from({ length: snake.size }, (v, i) => ({ row: 0, col: i }))
+  const [snake, setSnake] = useState(
+    Array.from({ length: SNAKE_LENGTH }, (v, i) => ({ row: 0, col: i }))
   );
   const [direction, setDirection] = useState({ row: 0, col: 1 }); // Moving right initially
-  const [targetPos, setTargetPos] = useState({ row: 10, col: 12 });
+  const [targetPos, setTargetPos] = useState({
+    row: parseInt(Math.random() * ROWS),
+    col: parseInt(Math.random() * COLS),
+  });
   useEffect(() => {
     // Add event listener for keypress to change snake direction
     const handleKeyPress = (event) => {
@@ -39,29 +49,22 @@ export default function SnakePage() {
 
   useEffect(() => {
     const tick = setInterval(() => {
-      setPos((prevPos) => {
-        const newPos = prevPos.map((item, idx) => {
-          if (idx === 0) {
-            // Move head
-            return {
-              row: (item.row + direction.row + cells.length) % cells.length, // cells.length used to wrap around the row
-              col:
-                (item.col + direction.col + cells[0].length) % cells[0].length, //cells[0].length used to wrap around the col
-            };
-          } else {
-            // Rest of body follows the previous cell's position
-            return prevPos[idx - 1];
-          }
-        });
-        return newPos;
-      });
-    }, 200);
+      moveSnake(setSnake, direction, cells);
+    }, 150);
 
     return () => clearInterval(tick);
   }, [direction, cells]);
 
+  useEffect(() => {
+    if (snake[0].col === targetPos.col && snake[0].row === targetPos.row) {
+      updateTargetPos(setTargetPos);
+      addSegmentToSnake(setSnake);
+    }
+  }, [snake, setTargetPos, targetPos]);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
+    <div className="flex flex-col items-center justify-center">
+      <SnakeLogo />
       <table className="min-w-1/2 table-auto border-collapse border border-gray-300">
         <tbody>
           {cells.map((row, rowIdx) => (
@@ -71,7 +74,7 @@ export default function SnakePage() {
                   key={`${rowIdx}${colIdx}`}
                   colIdx={colIdx}
                   rowIdx={rowIdx}
-                  pos={pos}
+                  snake={snake}
                   targetPos={targetPos}
                 />
               ))}
