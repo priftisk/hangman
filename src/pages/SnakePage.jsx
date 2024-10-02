@@ -5,6 +5,7 @@ import {
   GridInit,
   moveSnake,
   ROWS,
+  SNAKE_LENGTH,
   SnakeInit,
   updateTargetPos,
 } from "../helper/snake";
@@ -13,7 +14,7 @@ import SnakeLogo from "../components/snake/SnakeLogo";
 
 export default function SnakePage() {
   const [cells, setCells] = useState(GridInit());
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(SNAKE_LENGTH);
   const [snake, setSnake] = useState(SnakeInit());
   const [direction, setDirection] = useState({ row: 0, col: 1 }); // Moving right initially
   const [targetPos, setTargetPos] = useState({
@@ -21,7 +22,7 @@ export default function SnakePage() {
     col: parseInt(Math.random() * COLS),
   });
   const [isPlaying, setIsPlaying] = useState(false);
-  const [lost, setLost] = useState(false);
+  const [hasLost, setHasLost] = useState(false);
 
   // Handle key press for snake direction
   useEffect(() => {
@@ -57,62 +58,70 @@ export default function SnakePage() {
 
     const tick = setInterval(() => {
       moveSnake(setSnake, direction, cells);
-    }, 100);
+    }, 120);
 
     return () => clearInterval(tick);
   }, [direction, cells, isPlaying]);
 
   // Check for target collision
   useEffect(() => {
+    if (snake.length === 0) return;
     if (snake[0].col === targetPos.col && snake[0].row === targetPos.row) {
       //Check if head is on target
       updateTargetPos(setTargetPos);
       addSegmentToSnake(setSnake);
       setScore((prev) => prev + 1);
     }
-    setLost(
-      //Check if snake head has touched its body
-      snake
-        .slice(1)
-        .findIndex(
-          (item) => item.col === snake[0].col && item.row === snake[0].row
-        ) !== -1
-    );
-  }, [snake, setTargetPos, targetPos, setLost]);
 
-  const toggleGame = () => {
-    setIsPlaying((prev) => !prev);
+    if (snake.length > SNAKE_LENGTH) {
+      setHasLost(
+        //Check if snake head has touched its body
+        snake
+          .slice(1)
+          .findIndex(
+            (item) => item.col === snake[0].col && item.row === snake[0].row
+          ) !== -1
+      );
+    }
+  }, [snake, setTargetPos, targetPos, setHasLost]);
+
+  const startGame = () => {
+    setIsPlaying(true);
   };
 
   const handleRestart = () => {
-    setLost(false);
     setSnake(SnakeInit());
+    setScore(SNAKE_LENGTH)
     setDirection({ row: 0, col: 1 });
     setTargetPos({
       row: parseInt(Math.random() * ROWS),
       col: parseInt(Math.random() * COLS),
     });
-    setIsPlaying(false);
+    setHasLost(false);
+    setIsPlaying(true);
   };
 
   useEffect(() => {
-    if (lost) setIsPlaying(false);
-  }, [lost]);
+    if (hasLost) {
+      setIsPlaying(false);
+    }
+  }, [hasLost]);
 
   return (
     <>
       <div
         className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
-          isPlaying ? "hidden" : "visible"
+          isPlaying && !hasLost ? "hidden" : "visible"
         }`}
       >
         <button
           className="bg-slate-500 text-white py-2 px-4 rounded font-serif font-bold text-[2rem]"
-          onClick={!isPlaying ? toggleGame : handleRestart}
+          onClick={!isPlaying && hasLost ? handleRestart : startGame}
         >
-          {isPlaying ? "Restart" : "Start"}
+          {!isPlaying && hasLost ? "Restart" : "Start"}
         </button>
       </div>
+
       <div className="flex flex-col items-center justify-center">
         <SnakeLogo />
         <table className="min-w-1/2 table-auto border-collapse border border-gray-300">
@@ -133,7 +142,7 @@ export default function SnakePage() {
           </tbody>
         </table>
         <span className="text-slate-400 text-[3rem] mt-4 font-bold font-serif">
-          SCORE: {score}
+          SNAKE SIZE: {score}
         </span>
       </div>
     </>

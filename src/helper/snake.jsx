@@ -1,5 +1,5 @@
 export const ROWS = 16;
-export const COLS = 20;
+export const COLS = 32;
 export const SNAKE_LENGTH = 3;
 
 export function GridInit() {

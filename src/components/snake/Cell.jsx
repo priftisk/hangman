@@ -29,6 +29,7 @@ export default function Cell({ snake, rowIdx, colIdx, targetPos }) {
         <div className="flex items-center justify-center">
           <svg height="20" width="20">
             <circle r="10" cx="10" cy="10" fill="red" />
+            <circle r="5" cx="10" cy="10" fill="black" />
           </svg>
         </div>
       )}
