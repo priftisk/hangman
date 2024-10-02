@@ -49,3 +49,7 @@ export function moveSnake(setSnake, direction, cells) {
     return newPos;
   });
 }
+
+export function SnakeInit(){
+  return Array.from({ length: SNAKE_LENGTH }, (v, i) => ({ row: 0, col: i }))
+}

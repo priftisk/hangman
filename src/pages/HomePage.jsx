@@ -21,7 +21,7 @@ export default function HomePage() {
             </Link>
           </div>
           <hr className="w-full" />
-          <div className="animate-slideinright hover:scale-110 duration-500">
+          <div className="animate-slideinleft hover:scale-110 duration-500">
             <Link to={"minefield"}>
               <MineFieldLogo />
             </Link>
