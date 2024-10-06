@@ -1,8 +1,19 @@
-const LINE_LENGTH = 30;
+const LINE_LENGTH = 20;
 
 export function drawSquare(ctx, newX, newY, playerSize) {
   ctx.current.fillStyle = "#9b6ec2";
   ctx.current.fillRect(newX, newY, playerSize.width, playerSize.height);
+  ctx.current.beginPath();
+  ctx.current.arc(
+    newX + playerSize.width / 2,
+    newY + playerSize.height / 2,
+    4,
+    0,
+    2 * Math.PI
+  );
+  ctx.current.fillStyle = "black";
+  ctx.current.fill();
+  ctx.current.stroke();
 }
 
 export function drawTopLine(ctx, newX, newY, playerSize) {
@@ -25,7 +36,7 @@ export function drawBottomLine(ctx, newX, newY, playerSize) {
 export function drawLeftLine(ctx, newX, newY, playerSize) {
   ctx.current.beginPath();
   ctx.current.moveTo(newX, newY + playerSize.height / 2);
-  ctx.current.lineTo(newX - LINE_LENGTH, newY + playerSize.height / 2);
+  ctx.current.lineTo(newX - LINE_LENGTH, newY + playerSize.height / 2 - 10);
   ctx.current.stroke();
 }
 
@@ -34,7 +45,7 @@ export function drawRightLine(ctx, newX, newY, playerSize) {
   ctx.current.moveTo(newX + playerSize.width, newY + playerSize.height / 2);
   ctx.current.lineTo(
     newX + playerSize.width + LINE_LENGTH,
-    newY + playerSize.height / 2
+    newY + playerSize.height / 2 - 10
   );
   ctx.current.stroke();
 }
@@ -66,36 +77,27 @@ export function calculateOutOfBounds(playerPos, direction, playerSize, canvas) {
   return { newX, newY };
 }
 
-export const handleKeyUp = (event, setDirection) => {
-  switch (event.key) {
-    case "ArrowUp":
-    case "ArrowDown":
-      setDirection((prev) => ({ ...prev, y: 0 }));
-      break;
-    case "ArrowLeft":
-    case "ArrowRight":
-      setDirection((prev) => ({ ...prev, x: 0 }));
-      break;
-    default:
-      break;
-  }
-};
+// export function drawEnemy(ctx, enemy) {
+//   ctx.current.beginPath();
+//   ctx.current.arc(enemy.x, enemy.y, 10, 0, 2 * Math.PI);
+//   ctx.current.fillStyle = "black";
+//   ctx.current.fill();
+// }
 
-export const handleKeyDown = (event, setDirection, moveSpeed) => {
-  switch (event.key) {
-    case "ArrowUp":
-      setDirection((prev) => ({ ...prev, y: -moveSpeed }));
-      break;
-    case "ArrowDown":
-      setDirection((prev) => ({ ...prev, y: moveSpeed }));
-      break;
-    case "ArrowLeft":
-      setDirection((prev) => ({ ...prev, x: -moveSpeed }));
-      break;
-    case "ArrowRight":
-      setDirection((prev) => ({ ...prev, x: moveSpeed }));
-      break;
-    default:
-      break;
-  }
-};
+export function drawPipePair(ctx, canvasSize, pipe, distanceBetweenPipes) {
+  const pipeWidth = 20;
+
+  //Draw the bottom pipe
+  ctx.current.beginPath();
+  ctx.current.moveTo(pipe.x, canvasSize.height); // Start from pipe's new position
+  ctx.current.lineTo(pipe.x, pipe.y + distanceBetweenPipes); // Draw to updated position
+  ctx.current.lineWidth = pipeWidth;
+  ctx.current.stroke();
+
+  //Draw the top pipe
+  ctx.current.beginPath();
+  ctx.current.moveTo(pipe.x, 0); // Start from pipe's new position
+  ctx.current.lineTo(pipe.x, pipe.y - distanceBetweenPipes); // Draw to updated position
+  ctx.current.lineWidth = pipeWidth;
+  ctx.current.stroke();
+}
