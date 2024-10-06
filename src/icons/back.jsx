@@ -1,11 +1,11 @@
 export default function Back() {
   return (
     <svg
-      width="104px"
-      height="104px"
-      viewBox="0 0 512 512"
+      width="64px"
+      height="64px"
+      viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
-      fill="#ffff"
+      fill="#fff"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
@@ -14,20 +14,14 @@ export default function Back() {
         strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
-        {" "}
-        <defs> </defs>{" "}
-        <g data-name="Layer 2" id="Layer_2">
-          {" "}
-          <g
-            data-name="E421, Back, buttons, multimedia, play, stop"
-            id="E421_Back_buttons_multimedia_play_stop"
-          >
-            {" "}
-            <circle cx="256" cy="256" r="246"></circle>{" "}
-            <line x1="352.26" x2="170.43" y1="256" y2="256"></line>{" "}
-            <polyline points="223.91 202.52 170.44 256 223.91 309.48"></polyline>{" "}
-          </g>{" "}
-        </g>{" "}
+        <path
+          fill="#fff"
+          d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+        ></path>
+        <path
+          fill="#fff"
+          d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+        ></path>
       </g>
     </svg>
   );

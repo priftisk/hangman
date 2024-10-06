@@ -2,14 +2,12 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import HangmanLogo from "../components/hangman/HangmanLogo";
 import MineFieldLogo from "../components/battlefield/MineFieldLogo";
 import SnakeLogo from "../components/snake/SnakeLogo";
-// import HowHighLogo from "../components/howHigh/HowHighLogo";
-// import WordleLogo from "../components/wordle/WordleLogo";
+import Back from "../icons/back";
 
 export default function HomePage() {
   const location = useLocation();
   const locationisHome = location.pathname === "/";
-  // const locationIsHangman = location.pathname === "/hangman";
-  // const locationIsCanvas = location.pathname === "/how-high";
+
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -32,19 +30,13 @@ export default function HomePage() {
               <SnakeLogo />
             </Link>
           </div>
-          {/* <div className="animate-zoomin">
-            <Link to={"how-high"}>
-              <HowHighLogo />
-            </Link>
-          </div>
-          <div className="animate-slideinright">
-            <Link to={"wordle"}>
-              <WordleLogo />
-            </Link>
-          </div> */}
         </>
       )}
-
+      <div className={`absolute top-2 left-2 ${locationisHome && 'hidden'}`}>
+        <Link to={"/"}>
+          <Back />
+        </Link>
+      </div>
       <div className={`${!locationisHome && "animate-fadeinup"}`}>
         <Outlet />
       </div>
