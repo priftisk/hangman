@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import {
   calculateOutOfBounds,
-  drawLeftLine,
   drawPipePair,
-  drawRightLine,
-  drawSquare,
+  drawBird,
+  checkIfHitTarget,
 } from "../helper/flappybird";
+import FlappyBirdLogo from "../components/flappybird/FlappyBirdLogo";
 
 export default function FlappyBirdPage() {
   const canvasSize = { width: 1200, height: 400 };
@@ -14,12 +14,18 @@ export default function FlappyBirdPage() {
   const ctx = useRef(null);
   const [playerPos, setPlayerPos] = useState({ x: 100, y: 200 }); // Track x and y position of the player
   const [direction, setDirection] = useState({ x: 0, y: 0 });
-  const moveSpeed = 10;
+  const moveSpeed = 6;
   const playerSize = { width: 25, height: 25 };
+  const [score, setScore] = useState(0);
   const [pipes, setPipes] = useState([
     { x: canvasSize.width, y: canvasSize.height / 2 },
+    // { x: canvasSize.width / 2, y: canvasSize.height / 2 },
   ]);
-  const pipePositions = Array.from({ length: 4 }, (_, i) => i + 1);
+  // used to divide the canvas height
+  const pipePositions = Array.from(
+    { length: Math.ceil((5 - 2) / 0.5) + 1 },
+    (_, i) => 2 + i * 0.5
+  );
 
   useEffect(() => {
     const canvasElement = canvas.current;
@@ -41,20 +47,24 @@ export default function FlappyBirdPage() {
 
   const drawPlayer = () => {
     let { newX, newY } = calculateOutOfBounds(
+      //If out of bounds it returns the same x and y
       playerPos,
       direction,
       playerSize,
       canvas
     );
 
+    const hitTarget = checkIfHitTarget(pipes, newX, newY, playerSize);
+
+    if (hitTarget) {
+      setScore((prev) => prev + 1);
+    }
     // Update the player's position only after boundary checks
     setPlayerPos({ x: newX, y: newY });
     // Draw the player
-    drawSquare(ctx, newX, newY, playerSize);
+    drawBird(ctx, newX, newY, playerSize);
 
-    ctx.current.lineWidth = 3;
-    drawLeftLine(ctx, newX, newY, playerSize);
-    drawRightLine(ctx, newX, newY, playerSize);
+    // ctx.current.lineWidth = 3;
   };
 
   useEffect(() => {
@@ -102,7 +112,7 @@ export default function FlappyBirdPage() {
   }, [playerPos]);
 
   const drawPipes = () => {
-    let distanceBetweenPipes = 30;
+    let distanceBetweenPipes = 40;
     setPipes((prev) => {
       const updatedPipes = prev
         .map((pipe) => ({
@@ -153,16 +163,14 @@ export default function FlappyBirdPage() {
     // Start the ticker function at a regular interval
     const intervalId = setInterval(() => {
       ticker();
-    }, 5);
+    }, 10);
 
     return () => clearInterval(intervalId);
   }, [playerPos, direction, isPlaying]);
 
   return (
     <div className="flex items-center flex-col">
-      <span className="font-bold text-purple-400 lg:text-[8rem] md:text-[4rem] font-serif">
-        FLAPPY BIRD
-      </span>
+      <FlappyBirdLogo />
       <canvas
         ref={canvas}
         id="main-canvas"
@@ -170,6 +178,7 @@ export default function FlappyBirdPage() {
         width={canvasSize.width}
         height={canvasSize.height}
       ></canvas>
+      <span className="text-white text-xl">SCORE: {score}</span>
       <button
         className="text-white bg-purple-400 px-4 py-2 mt-2 rounded-lg text-lg font-bold"
         onClick={() => setIsPlaying(!isPlaying)}
